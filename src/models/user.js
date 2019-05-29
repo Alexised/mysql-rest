@@ -115,3 +115,11 @@ userModel.updateChapionship =(chapionshipData,callback)=>{
         })
     }
 }
+
+userModel.deleteChapionship=(idChampionship,callback)=>{
+    if (connection) { 
+        const sql =`
+        SELECT * FROM  championship WHERE idChampionship = ${connection.escape(chapionshipData.idChampionship)}
+        `
+    }
+}

@@ -32,7 +32,7 @@ module.exports=function(app){
 });
 
 
-    app.put('/chapionship/:id' ,(req,res)=>{
+    app.put('/chapionship/:id   ' ,(req,res)=>{
         const chapionshipData={
             idChampionship:req.params.id,
             Name_Championship:req.body.Name_Championship,
@@ -49,5 +49,8 @@ module.exports=function(app){
                 })
             }
         })
+    })
+    app.delete('/chapionship/:id' ,(req,res)=>{
+
     })
 }
