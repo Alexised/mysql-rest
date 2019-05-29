@@ -32,7 +32,7 @@ userModel.insertchampionship = (chapionshipData, callback) => {
                     throw err;
                 } else {
                     callback(null, {
-                        'InsertId': result.insertId
+                        'insertId': result.insertId
                     });
                 }
             }

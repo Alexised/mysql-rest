@@ -9,16 +9,15 @@ module.exports=function(app){
   
 
 
-app.post('/users',(req,res)=>{
+app.post('/chapionship',(req,res)=>{
     const chapionshipData={
         idChampionship:null,
         Name_Championship:req.body.Name_Championship,
-        City_Championship:req.body.City_Championship,
-        create_at:null,
-        update_at:null
+        City_Championship:req.body.City_Championship
+       
     };
     User.insertchampionship(chapionshipData,(err,data)=>{
-        if(data && data.insertId){
+        if(data && data.insertId ){
             res.json({
                 success:true,
                 msg:'dato insertado',
@@ -32,4 +31,27 @@ app.post('/users',(req,res)=>{
         }
     })
 });
+
+// app.post('/Groups',(req,res)=>{
+//     const idGroups={
+//         idChampionship:null,
+//         Name_Groups:req.body.Name_Championship,
+//         Championship_idChampionship:req.body.City_Championship
+       
+//     };
+//     User.insertGroups(GroupshipData,(err,data)=>{
+//         if(data && data.insertId ){
+//             res.json({
+//                 success:true,
+//                 msg:'dato insertado',
+//                 data:data
+//             })
+//         }else{
+//             res.status(500).json({
+//                 success:false,
+//                 msg:'Error'
+//             })
+//         }
+//     })
+// });
 }
