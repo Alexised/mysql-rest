@@ -67,3 +67,31 @@ userModel.getGroups = (callback) => {
             })
     }
 }
+userModel.insertMatche = (GroupMatche, callback) => {
+    if (connection) {
+        connection.query(
+            'INSERT INTO matche SET ?', GroupMatche,
+            (err, result) => {
+                if (err) {
+                    throw err;
+                } else {
+                    callback(null, {
+                        'insertId': result.insertId
+                    });
+                }
+            }
+        )
+    }
+};
+userModel.getMatche = (callback) => {
+    if (connection) {
+        connection.query('SELECT *FROM matche ORDER BY idMatche',
+            (err, rows) => {
+                if (err) {
+                    throw err;
+                } else {
+                    callback(null, rows)
+                }
+            })
+    }
+}

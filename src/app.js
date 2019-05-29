@@ -11,8 +11,10 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 //routes
-require('./routes/chapionshipRoutes')(app);
+require('./routes/ChapionshipRoutes')(app);
 require('./routes/GroupsRoutes')(app);
+require('./routes/MatcheRoutes')(app);
+
 
 
 app.listen(app.get('port'),()=>{
