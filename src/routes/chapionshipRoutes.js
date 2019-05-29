@@ -31,4 +31,23 @@ module.exports=function(app){
     })
 });
 
+
+    app.put('/chapionship/:id' ,(req,res)=>{
+        const chapionshipData={
+            idChampionship:req.params.id,
+            Name_Championship:req.body.Name_Championship,
+            City_Championship:req.body.City_Championship
+           
+        };
+        User.updateChapionship(chapionshipData,(err,data)=>{
+            if(data&&data.msg){
+                res.json(data)
+            }else{
+                res.json({
+                    success:false,
+                    msg:'error'
+                })
+            }
+        })
+    })
 }

@@ -95,3 +95,23 @@ userModel.getMatche = (callback) => {
             })
     }
 }
+
+userModel.updateChapionship =(chapionshipData,callback)=>{
+    if (connection) { 
+        const sql =`
+        UPDATE championship set
+        Name_Championship = ${connection.escape(chapionshipData.Name_Championship)},
+        City_Championship = ${connection.escape(chapionshipData.City_Championship)} 
+        WHERE idChampionship = ${connection.escape(chapionshipData.idChampionship)}
+        `
+        connection.query(sql,(err, result)=>{
+            if(err){
+                throw err;
+            } else {
+                callback(null, {
+                    "msg":"success"
+                });
+            }
+        })
+    }
+}
