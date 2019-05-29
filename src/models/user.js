@@ -9,7 +9,7 @@ connection = mysql.createConnection({
 
 let userModel = {};
 
-userModel.getUsers = (callback) => {
+userModel.getChapionship = (callback) => {
     if (connection) {
         connection.query('SELECT *FROM championship ORDER BY idChampionship',
             (err, rows) => {
@@ -39,3 +39,31 @@ userModel.insertchampionship = (chapionshipData, callback) => {
         )
     }
 };
+userModel.insertGroups = (GroupData, callback) => {
+    if (connection) {
+        connection.query(
+            'INSERT INTO groups SET ?', GroupData,
+            (err, result) => {
+                if (err) {
+                    throw err;
+                } else {
+                    callback(null, {
+                        'insertId': result.insertId
+                    });
+                }
+            }
+        )
+    }
+};
+userModel.getGroups = (callback) => {
+    if (connection) {
+        connection.query('SELECT *FROM Groups ORDER BY idGroups',
+            (err, rows) => {
+                if (err) {
+                    throw err;
+                } else {
+                    callback(null, rows)
+                }
+            })
+    }
+}
