@@ -119,7 +119,28 @@ userModel.updateChapionship =(chapionshipData,callback)=>{
 userModel.deleteChapionship=(idChampionship,callback)=>{
     if (connection) { 
         const sql =`
-        SELECT * FROM  championship WHERE idChampionship = ${connection.escape(chapionshipData.idChampionship)}
+        SELECT * FROM  championship WHERE idChampionship = ${connection.escape(idChampionship)}
         `
+        connection.query(sql,(err, row)=>{
+            if(row){
+                let sql = `
+                DELETE FROM championship WHERE idChampionship  = ${connection.escape(idChampionship)}
+                `
+            
+        connection.query(sql,(err, result)=>{
+            if(err){
+                throw err;
+            }else {
+                callback(null,{
+                    msg:'delete'
+                })
+            }
+        });
+    }else{
+        callback(null,{
+            msg:'no exist'
+        })
+    }
+        });
     }
 }

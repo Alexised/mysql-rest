@@ -34,7 +34,7 @@ module.exports=function(app){
 
     app.put('/chapionship/:id   ' ,(req,res)=>{
         const chapionshipData={
-            idChampionship:req.params.id,
+            idChampionship:req.params.idChampionship,
             Name_Championship:req.body.Name_Championship,
             City_Championship:req.body.City_Championship
            
@@ -50,7 +50,20 @@ module.exports=function(app){
             }
         })
     })
-    app.delete('/chapionship/:id' ,(req,res)=>{
-
+    app.delete('/chapionship/:id' ,(req,data)=>{
+        User.deleteChapionship(req.params.idChampionship, (err, data)=>{
+            if(data && data.msg=='delete'||data.msg=='no exist'){
+                res.json({
+                    success: true,
+                    data
+                })
+            }else{
+                
+                    res.status(500).json({
+                        msg:'error'
+                    })
+               
+            }
+        })
     })
 }
